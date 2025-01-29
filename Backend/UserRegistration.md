@@ -25,17 +25,19 @@ Example:
     },
     "password": "password123"
 }
-
-Response:
-201 Created: The user was successfully registered.
-400 Bad Request: The request body is invalid or missing required fields.
-500 Internal Server Error: An error occurred on the server.
+```
+Response: \
+201 Created: The user was successfully registered.\
+400 Bad Request: The request body is invalid or missing required fields.\
+500 Internal Server Error: An error occurred on the server.\
 Status Codes:
-201: User created successfully.
-400: Invalid input data.
-500: Server error.
+201: User created successfully.\
+400: Invalid input data.\
+500: Server error.\
 
-Example Request:curl -X POST http://localhost:3000/users/register/ \
+Example Request:
+```json
+curl -X POST http://localhost:3000/users/register/ 
 -H "Content-Type: application/json" \
 -d '{
     "email": "user@example.com",
@@ -47,13 +49,15 @@ Example Request:curl -X POST http://localhost:3000/users/register/ \
 }'
 
 {
-    "message": "User registered successfully",
+    "token": "A random JWT GENERATED TOKEN",
     "user": {
         "id": "60d0fe4f5311236168a109ca",
         "email": "user@example.com",
         "fullName": {
             "firstName": "John",
             "lastName": "Doe"
-        }
+        },
+        "password":"a user generated password"
     }
 }
+```
