@@ -96,3 +96,107 @@ Example Response:
         }
     }
 }
+```
+# User Profile Endpoint Documentation
+
+## Endpoint: `/users/profile/`
+
+### Method: GET
+
+### Description:
+This endpoint is used to retrieve the profile of the currently authenticated user.
+
+### Request Headers:
+- `Authorization`: A valid JWT token in the format `Bearer <token>`.
+
+### Response:
+- **200 OK**: The user's profile was successfully retrieved.
+- **401 Unauthorized**: The user is not authenticated.
+- **500 Internal Server Error**: An error occurred on the server.
+
+### Status Codes:
+- **200**: User profile retrieved successfully.
+- **401**: User not authenticated.
+- **500**: Server error.
+
+### Example Request:
+```bash
+curl -X GET http://localhost:3000/users/profile/ \
+-H "Authorization: Bearer <token>"
+
+```
+
+# User Profile Endpoint Documentation
+
+## Endpoint: `/users/profile/`
+
+### Method: GET
+
+### Description:
+This endpoint is used to retrieve the profile of the currently authenticated user.
+
+### Request Headers:
+- `Authorization`: A valid JWT token in the format `Bearer <token>`.
+
+### Response:
+- **200 OK**: The user's profile was successfully retrieved.
+- **401 Unauthorized**: The user is not authenticated.
+- **500 Internal Server Error**: An error occurred on the server.
+
+### Status Codes:
+- **200**: User profile retrieved successfully.
+- **401**: User not authenticated.
+- **500**: Server error.
+
+### Example Request:
+```bash
+curl -X GET http://localhost:3000/users/profile/ \
+-H "Authorization: Bearer <token>"
+```
+
+### Example Response:
+```json
+{
+    "id": "60d0fe4f5311236168a109ca",
+    "email": "user@example.com",
+    "fullName": {
+        "firstName": "John",
+        "lastName": "Doe"
+    }
+}
+```
+
+# User Logout Endpoint Documentation
+
+## Endpoint: `/users/logout/`
+
+### Method: GET
+
+### Description:
+This endpoint is used to log out the currently authenticated user.
+
+### Request Headers:
+- `Authorization`: A valid JWT token in the format `Bearer <token>`.
+
+### Response:
+- **200 OK**: The user was successfully logged out.
+- **401 Unauthorized**: The user is not authenticated.
+- **500 Internal Server Error**: An error occurred on the server.
+
+### Status Codes:
+- **200**: User logged out successfully.
+- **401**: User not authenticated.
+- **500**: Server error.
+
+### Example Request:
+```bash
+curl -X GET http://localhost:3000/users/logout/ \
+-H "Authorization: Bearer <token>"
+```
+
+### Example Response:
+```json
+{
+    "message": "Logged out Successfully"
+}
+```
