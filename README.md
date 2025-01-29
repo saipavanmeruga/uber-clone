@@ -6,6 +6,14 @@ Uber_Clone \
 -- Backend \
 -- Frontend
 
+Step 1:\
+Created the backend app.js and server.js files \
+server.js will be the main entry point.
+Create env config files to declare env variables that will be used by the application.
+
+Step 2:\
+Create models
+Firstly, we will create an User model that will be used for authentication.
 
 
 

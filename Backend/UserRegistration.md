@@ -1,0 +1,59 @@
+# User Registration Endpoint Documentation
+
+## Endpoint: `/users/register/`
+
+### Method: POST
+
+### Description:
+This endpoint is used to register a new user. The user must provide their first name, last name, email, and password.
+
+### Request Body:
+The request body must be a JSON object containing the following fields:
+
+- `email`: A valid email address.
+- `fullName.firstName`: The first name of the user, which must be at least 3 characters long.
+- `fullName.lastName`: The last name of the user (optional), which must be at least 3 characters long if provided.
+- `password`: A password that must be at least 6 characters long.
+
+Example:
+```json
+{
+    "email": "user@example.com",
+    "fullName": {
+        "firstName": "John",
+        "lastName": "Doe"
+    },
+    "password": "password123"
+}
+
+Response:
+201 Created: The user was successfully registered.
+400 Bad Request: The request body is invalid or missing required fields.
+500 Internal Server Error: An error occurred on the server.
+Status Codes:
+201: User created successfully.
+400: Invalid input data.
+500: Server error.
+
+Example Request:curl -X POST http://localhost:3000/users/register/ \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "user@example.com",
+    "fullName": {
+        "firstName": "John",
+        "lastName": "Doe"
+    },
+    "password": "password123"
+}'
+
+{
+    "message": "User registered successfully",
+    "user": {
+        "id": "60d0fe4f5311236168a109ca",
+        "email": "user@example.com",
+        "fullName": {
+            "firstName": "John",
+            "lastName": "Doe"
+        }
+    }
+}
