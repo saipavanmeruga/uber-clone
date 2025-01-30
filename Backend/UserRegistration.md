@@ -123,47 +123,6 @@ This endpoint is used to retrieve the profile of the currently authenticated use
 ```bash
 curl -X GET http://localhost:3000/users/profile/ \
 -H "Authorization: Bearer <token>"
-
-```
-
-# User Profile Endpoint Documentation
-
-## Endpoint: `/users/profile/`
-
-### Method: GET
-
-### Description:
-This endpoint is used to retrieve the profile of the currently authenticated user.
-
-### Request Headers:
-- `Authorization`: A valid JWT token in the format `Bearer <token>`.
-
-### Response:
-- **200 OK**: The user's profile was successfully retrieved.
-- **401 Unauthorized**: The user is not authenticated.
-- **500 Internal Server Error**: An error occurred on the server.
-
-### Status Codes:
-- **200**: User profile retrieved successfully.
-- **401**: User not authenticated.
-- **500**: Server error.
-
-### Example Request:
-```bash
-curl -X GET http://localhost:3000/users/profile/ \
--H "Authorization: Bearer <token>"
-```
-
-### Example Response:
-```json
-{
-    "id": "60d0fe4f5311236168a109ca",
-    "email": "user@example.com",
-    "fullName": {
-        "firstName": "John",
-        "lastName": "Doe"
-    }
-}
 ```
 
 # User Logout Endpoint Documentation
@@ -198,5 +157,88 @@ curl -X GET http://localhost:3000/users/logout/ \
 ```json
 {
     "message": "Logged out Successfully"
+}
+```
+# Captain Registration Endpoint Documentation
+
+## Endpoint: `/captains/register/`
+
+### Method: POST
+
+### Description:
+This endpoint is used to register a new captain. The captain must provide their first name, last name, email, password, and vehicle details.
+
+### Request Body:
+The request body must be a JSON object containing the following fields:
+
+- `email`: A valid email address.
+- `fullName.firstName`: The first name of the captain, which must be at least 3 characters long.
+- `fullName.lastName`: The last name of the captain (optional), which must be at least 3 characters long if provided.
+- `password`: A password that must be at least 6 characters long.
+- `vehicle.color`: The color of the vehicle, which must be at least 3 characters long.
+- `vehicle.plate`: The plate number of the vehicle, which must be at least 3 characters long.
+- `vehicle.capacity`: The capacity of the vehicle, which must be at least 1.
+- `vehicle.vehicleType`: The type of the vehicle, which must be one of the following: `car`, `auto`, `motorcycle`.
+
+Example:
+```json
+{
+    "email": "captain@example.com",
+    "fullName": {
+        "firstName": "John",
+        "lastName": "Doe"
+    },
+    "password": "password123",
+    "vehicle": {
+        "color": "Red",
+        "plate": "ABC123",
+        "capacity": 4,
+        "vehicleType": "car"
+    }
+}
+
+Status Codes:
+201: Captain created successfully.
+400: Invalid input data.
+500: Server error.
+
+Example Request:
+```bash
+curl -X POST http://localhost:3000/captains/register/ \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "captain@example.com",
+    "fullName": {
+        "firstName": "John",
+        "lastName": "Doe"
+    },
+    "password": "password123",
+    "vehicle": {
+        "color": "Red",
+        "plate": "ABC123",
+        "capacity": 4,
+        "vehicleType": "car"
+    }
+}'
+```
+
+Example Response:
+```json
+{
+    "token": "A random JWT GENERATED TOKEN",
+    "captain": {
+        "id": "60d0fe4f5311236168a109ca",
+        "email": "captain@example.com",
+        "fullName": {
+            "firstName": "John",
+            "lastName": "Doe"
+        },
+        "vehicle": {
+            "color": "Red",
+            "plate": "ABC123",
+            "capacity": 4,
+            "vehicleType": "car"
+        }
+    }
 }
 ```
