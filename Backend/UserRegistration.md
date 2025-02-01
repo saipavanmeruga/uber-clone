@@ -83,8 +83,9 @@ Example:
     "email": "user@example.com",
     "password": "password123"
 }
-
+```
 Example Response:
+```json
 {
     "token": "A random JWT GENERATED TOKEN",
     "user": {
@@ -196,7 +197,7 @@ Example:
         "vehicleType": "car"
     }
 }
-
+```
 Status Codes:
 201: Captain created successfully.
 400: Invalid input data.
@@ -240,5 +241,136 @@ Example Response:
             "vehicleType": "car"
         }
     }
+}
+```
+
+# Captain Login Endpoint Documentation
+
+## Endpoint: `/captains/login/`
+
+### Method: POST
+
+### Description:
+This endpoint is used to log in an existing captain. The captain must provide their email and password.
+
+### Request Body:
+The request body must be a JSON object containing the following fields:
+
+- `email`: A valid email address.
+- `password`: A password that must be at least 6 characters long.
+
+Example:
+```json
+{
+    "email": "captain@example.com",
+    "password": "password123"
+}
+```
+
+Status Codes:
+200: Captain logged in successfully.
+400: Invalid input data.
+401: Invalid email or password.
+500: Server error.
+
+Example Request:
+```bash
+curl -X POST http://localhost:3000/captains/login/ \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "captain@example.com",
+    "password": "password123"
+}'
+```
+
+Example Response:
+```json
+{
+    "token": "A random JWT GENERATED TOKEN",
+    "captain": {
+        "id": "60d0fe4f5311236168a109ca",
+        "email": "captain@example.com",
+        "fullName": {
+            "firstName": "John",
+            "lastName": "Doe"
+        },
+        "vehicle": {
+            "color": "Red",
+            "plate": "ABC123",
+            "capacity": 4,
+            "vehicleType": "car"
+        }
+    }
+}
+```
+
+# Captain Profile Endpoint Documentation
+
+## Endpoint: `/captains/profile/`
+
+### Method: GET
+
+### Description:
+This endpoint is used to retrieve the profile of the currently authenticated captain.
+
+### Request Headers:
+`Authorization`: A valid JWT token in the format `Bearer <token>`.
+
+Status Codes:
+200: Captain profile retrieved successfully.
+401: Captain not authenticated.
+500: Server error.
+
+Example Request:
+```bash
+curl -X GET http://localhost:3000/captains/profile/ \
+-H "Authorization: Bearer <token>"
+```
+
+Example Response:
+```json
+{
+    "id": "60d0fe4f5311236168a109ca",
+    "email": "captain@example.com",
+    "fullName": {
+        "firstName": "John",
+        "lastName": "Doe"
+    },
+    "vehicle": {
+        "color": "Red",
+        "plate": "ABC123",
+        "capacity": 4,
+        "vehicleType": "car"
+    }
+}
+```
+
+# Captain Logout Endpoint Documentation
+
+## Endpoint: `/captains/logout/`
+
+### Method: GET
+
+### Description:
+This endpoint is used to log out the currently authenticated captain.
+
+### Request Headers:
+`Authorization`: A valid JWT token in the format `Bearer <token>`
+
+Status Codes:
+200: Captain logged out successfully.
+401: Captain not authenticated.
+500: Server error.
+
+Example Request:
+```bash
+curl -X GET http://localhost:3000/captains/logout/ \
+-H "Authorization: Bearer <token>"
+```
+
+Example Response:
+```json 
+{
+    "message": "Captain Logged out Successfully"
 }
 ```
